@@ -23,6 +23,7 @@ public class Fase extends JPanel implements ActionListener {
 	private Timer timer;
 	private boolean jogando;
 	private List<Inimigo> inimigos;
+	private int pontos = 0;
 
 	private int[][] coordenadas_inimigos = { { 2380, 29 }, { 2600, 59 }, { 1380, 89 }, { 780, 109 }, { 580, 139 },
 			{ 880, 239 }, { 790, 259 }, { 760, 50 }, { 790, 150 }, { 1980, 209 }, { 560, 45 }, { 510, 70 },
@@ -70,14 +71,13 @@ public class Fase extends JPanel implements ActionListener {
 				Inimigo inimigo = (Inimigo) inimigos.get(i);
 				graficos.drawImage(inimigo.getImagem(), inimigo.getX(), inimigo.getY(), this);
 			}
-			
+
 //			TESTAR AQUI A PONTUAÇÃO
 			graficos.setColor(Color.WHITE);
-			graficos.drawString("PONTUAÇÃO: " + inimigos.size(),15, 25);
-			
-			
+			graficos.drawString("PONTUAÇÃO: " + pontos, 230, 540);
+
 		} else {
-			ImageIcon gameOver = new ImageIcon("res\\gameOver\\gameOver.jpg");
+			ImageIcon gameOver = new ImageIcon("res\\gameOver\\gameOver.gif");
 			graficos.drawImage(gameOver.getImage(), 0, 0, null);
 		}
 
@@ -126,6 +126,7 @@ public class Fase extends JPanel implements ActionListener {
 				if (formaInimigo.intersects(formaInimigo)) {
 					inimigoTemp.setVisible(false);
 					laserTemp.setVisible(false);
+					pontos += 100;
 				}
 
 			}
@@ -137,9 +138,9 @@ public class Fase extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (inimigos.size() == 0) {
-			jogando = false;
-		}
+//		if (inimigos.size() > 0) {
+//			jogando = true;
+//		}
 
 		List<Laser> lasers = nave.getLasers();
 
