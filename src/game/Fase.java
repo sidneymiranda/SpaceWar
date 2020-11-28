@@ -74,6 +74,7 @@ public class Fase extends JPanel implements ActionListener {
 
 //			TESTAR AQUI A PONTUAÇÃO
 			graficos.setColor(Color.WHITE);
+			graficos.drawString("PONTUAÇÃO:" + pontos, 250, 550);
 
 		} else {
 			ImageIcon gameOver = new ImageIcon("res\\gameOver\\gameOver.gif");
@@ -89,10 +90,6 @@ public class Fase extends JPanel implements ActionListener {
 
 		for (int i = 0; i < coordenadas_inimigos.length; i++) {
 			inimigos.add(new Inimigo(coordenadas_inimigos[i][0], coordenadas_inimigos[i][1]));
-			
-			if(i == coordenadas_inimigos.length) {
-				inimigos.add(new Inimigo(coordenadas_inimigos[i][0], coordenadas_inimigos[i][1]));
-			}
 		}
 	}
 
@@ -129,7 +126,7 @@ public class Fase extends JPanel implements ActionListener {
 				if (formaLaser.intersects(formaInimigo)) {
 					inimigoTemp.setVisible(false);
 					laserTemp.setVisible(false);
-					pontos += 100;
+					pontos += 10;
 				}
 
 			}
@@ -140,10 +137,6 @@ public class Fase extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-//		if (inimigos.size() > 0) {
-//			jogando = true;
-//		}
 
 		List<Laser> lasers = nave.getLasers();
 
@@ -176,20 +169,20 @@ public class Fase extends JPanel implements ActionListener {
 	}
 
 	private class TecladoAdapter extends KeyAdapter {
-		
+
 		@Override
 		public void keyPressed(KeyEvent e) {
-		
-			if(!jogando) {
-				
+
+			if (!jogando) {
 //				REINICIA O JOGO SOMENTE QUANDO PERDER UMA PARTIDA E CLICAR NO ENTER
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					pontos = 0;
 					jogando = true;
 					nave = new Nave();
 					gerarInimigos();
 				}
 			}
-			
+
 			nave.keyPressed(e);
 		}
 
