@@ -89,6 +89,10 @@ public class Fase extends JPanel implements ActionListener {
 
 		for (int i = 0; i < coordenadas_inimigos.length; i++) {
 			inimigos.add(new Inimigo(coordenadas_inimigos[i][0], coordenadas_inimigos[i][1]));
+			
+			if(i == coordenadas_inimigos.length) {
+				inimigos.add(new Inimigo(coordenadas_inimigos[i][0], coordenadas_inimigos[i][1]));
+			}
 		}
 	}
 
@@ -172,9 +176,20 @@ public class Fase extends JPanel implements ActionListener {
 	}
 
 	private class TecladoAdapter extends KeyAdapter {
-
+		
 		@Override
 		public void keyPressed(KeyEvent e) {
+		
+			if(!jogando) {
+				
+//				REINICIA O JOGO SOMENTE QUANDO PERDER UMA PARTIDA E CLICAR NO ENTER
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					jogando = true;
+					nave = new Nave();
+					gerarInimigos();
+				}
+			}
+			
 			nave.keyPressed(e);
 		}
 
