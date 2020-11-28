@@ -45,8 +45,9 @@ public class Fase extends JPanel implements ActionListener {
 		gerarInimigos();
 
 //		THREAD RESPONSÁVEL POR PRINTAR A TELA A CADA 5 ms
-		timer = new Timer(5, this);
+		timer = new Timer(15, this);
 		timer.start();
+		
 	}
 
 	public void paint(Graphics g) {
