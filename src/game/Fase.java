@@ -74,7 +74,6 @@ public class Fase extends JPanel implements ActionListener {
 
 //			TESTAR AQUI A PONTUAÇÃO
 			graficos.setColor(Color.WHITE);
-			graficos.drawString("PONTUAÇÃO: " + pontos, 230, 540);
 
 		} else {
 			ImageIcon gameOver = new ImageIcon("res\\gameOver\\gameOver.gif");
@@ -123,7 +122,7 @@ public class Fase extends JPanel implements ActionListener {
 				Inimigo inimigoTemp = inimigos.get(j);
 				formaInimigo = inimigoTemp.getBounds();
 
-				if (formaInimigo.intersects(formaInimigo)) {
+				if (formaLaser.intersects(formaInimigo)) {
 					inimigoTemp.setVisible(false);
 					laserTemp.setVisible(false);
 					pontos += 100;
